@@ -115,11 +115,12 @@ namespace Module
 
         static HttpWebRequest NewRequset(String Url, string sn)
         {
+            Console.WriteLine(Url);
             HttpWebRequest request = HttpWebRequest.Create(Url) as HttpWebRequest;
             request.Method = "GET";
             //request.ContentType = "application/x-www-form-urlencoded";
             request.Timeout = 30000;
-            request.UserAgent = @"Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36";
+            request.UserAgent = @"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36";
             request.Referer = @"https://ani.gamer.com.tw/";
             request.Headers.Add("origin", @"https://ani.gamer.com.tw");
             request.CookieContainer = Cookies;
@@ -135,6 +136,7 @@ namespace Module
 
         static String Request(string Url, string sn)
         {
+            Console.WriteLine(Url);
             HttpWebRequest request = NewRequset(Url,sn);
             string result = "";
             using (HttpWebResponse response = request.GetResponse() as HttpWebResponse)
@@ -226,7 +228,7 @@ namespace Module
 
         public static bool GainAccess(String rid, String sn)
         {
-            string STR = @"https://ani.gamer.com.tw/ajax/token.php?adID=0&sn=" + sn + "&device=" + rid + "&hash=" + Local.RandomString(12);
+            string STR = @"https://ani.gamer.com.tw/ajax/token.php?adID=undefined&sn=" + sn + "&device=" + rid + "&hash=" + Local.RandomString(12);
             HttpWebRequest request = NewRequset(STR, sn);
 
             using (HttpWebResponse response = request.GetResponse() as HttpWebResponse)

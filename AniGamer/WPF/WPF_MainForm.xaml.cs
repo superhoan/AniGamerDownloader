@@ -104,6 +104,7 @@ namespace WPF
         {
             if (!File.Exists(AppDomain.CurrentDomain.BaseDirectory + "ffmpeg.exe"))
             {
+                Console.WriteLine(AppDomain.CurrentDomain.BaseDirectory);
                 WPFMessageBox.Show("請先下載轉檔工具ffmpeg.exe 放到同一目錄下。");
                 Application.Current.Shutdown();
             }
@@ -544,10 +545,6 @@ namespace WPF
                     處理下載();
                     return;
                 }
-                BahaRequest.Unlock(Baha.SN);
-                BahaRequest.CheckLock(Baha.DeviceId, Baha.SN);
-                BahaRequest.Unlock(Baha.SN);
-                BahaRequest.Unlock(Baha.SN);
                 string ad = BahaRequest.GetAd(Baha.SN);
                 BahaRequest.StartAd(Baha.SN,ad);
                 for (int i = 30; i > 0; i--)
